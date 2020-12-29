@@ -215,7 +215,7 @@ export class SimplePfsStream extends stream.Duplex {
 
     const ephemeralAlgorithm = cc.createAsymmetricAlgorithm(cc.AsymmetricAlgorithmType.ec, 'curve25519');
     const ephemeralKeyPair = ephemeralAlgorithm.generateKeyPair();
-    const nonce: Buffer = elliptic.rand(16);
+    const nonce: Buffer = crypto.randomBytes(16);
 
     const clientHello: payload.ClientHello = {
       $pt: payload.PayloadType.ClientHello,
@@ -266,7 +266,7 @@ export class SimplePfsStream extends stream.Duplex {
     this._handshakeState = HandshakeState.ClientHello;
 
     const opts = this._opts as ServerConnectionOptions;
-    const serverNonce: Buffer = elliptic.rand(16);
+    const serverNonce: Buffer = crypto.randomBytes(16);
 
     const applicationTrafficSecretSalt = crypto.randomBytes(32);
 
