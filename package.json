@@ -10,7 +10,8 @@
     "fix:lint": "eslint --fix --ext \".js,.ts\" ./src",
     "test": "npm run test:lint && npm run test:mocha",
     "test:mocha": "mocha -r ts-node/register test/**/*.test.ts",
-    "example:basic": "ts-node example/basic-example.ts"
+    "example:basic": "ts-node example/basic-example.ts",
+    "prepack": "npm run test && npm run build"
   },
   "keywords": [
     "pfs", "ecdh", "ecdhe"
