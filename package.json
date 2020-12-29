@@ -1,0 +1,55 @@
+{
+  "name": "simple-pfs-stream",
+  "version": "0.0.1",
+  "description": "JSON-based perfect forward secrecy stream",
+  "main": "lib/index.js",
+  "typings": "lib/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "test:lint": "eslint --ext \".js,.ts\" ./src",
+    "fix:lint": "eslint --fix --ext \".js,.ts\" ./src",
+    "test": "npm run test:lint && npm run test:mocha",
+    "test:mocha": "mocha -r ts-node/register test/**/*.test.ts",
+    "example:basic": "ts-node example/basic-example.ts"
+  },
+  "keywords": [
+    "pfs", "ecdh", "ecdhe"
+  ],
+  "author": {
+    "name": "Joseph Lee",
+    "email": "joseph@jc-lab.net"
+  },
+  "license": "Apache-2.0",
+  "devDependencies": {
+    "@types/chai": "^4.2.14",
+    "@types/elliptic": "^6.4.12",
+    "@types/mocha": "^8.2.0",
+    "@types/node": "^14.14.16",
+    "@types/node-forge": "^0.9.5",
+    "@typescript-eslint/eslint-plugin": "^4.11.1",
+    "@typescript-eslint/parser": "^4.11.1",
+    "chai": "^4.2.0",
+    "eslint": "^7.16.0",
+    "mocha": "^8.2.1",
+    "ts-node": "^9.1.1",
+    "typescript": "^4.1.3"
+  },
+  "dependencies": {
+    "commons-crypto": "^0.1.8",
+    "elliptic": "^6.5.3",
+    "jose": "^3.5.0",
+    "node-forge": "^0.10.0"
+  },
+  "directories": {
+    "example": "example",
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jc-lab/simple-pfs-stream.git"
+  },
+  "bugs": {
+    "url": "https://github.com/jc-lab/simple-pfs-stream/issues"
+  },
+  "homepage": "https://github.com/jc-lab/simple-pfs-stream#readme"
+}
