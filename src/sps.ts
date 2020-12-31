@@ -208,10 +208,25 @@ export class SimplePfsStream extends stream.Duplex {
       });
   }
 
+  public disconnect() {
+    //TODO: send Finish payload
+    return Promise.resolve()
+      .then(() => this.emitClose());
+  }
+
+  public emitClose() {
+    this._cleanup();
+    this.emit('close');
+    if (this._opts.closed)
+      this._opts.closed();
+  }
+
   public handshake(): Promise<void> {
     if (this._opts.server) {
       return Promise.reject(new Error('Not a client'));
     }
+
+    this._cleanup();
 
     const ephemeralAlgorithm = cc.createAsymmetricAlgorithm(cc.AsymmetricAlgorithmType.ec, 'curve25519');
     const ephemeralKeyPair = ephemeralAlgorithm.generateKeyPair();
@@ -250,6 +265,20 @@ export class SimplePfsStream extends stream.Duplex {
       $pt: PayloadType.ApplicationData,
       data: data
     } as payload.ApplicationData);
+  }
+
+  private _cleanup() {
+    this._handshakeState = HandshakeState.NotStarted;
+    this._serverNonce = undefined as any;
+    this._clientNonce = undefined as any;
+    this._connectionPrfHash = undefined as any;
+    this._connectionEncAlgo = undefined as any;
+    this._connectionEncBase = undefined as any;
+    this._ephemeralAlgorithm = undefined as any;
+    this._ephemeralPrivateKey = undefined as any;
+    this._masterSecret = undefined as any;
+    this._wrappedTrafficSecret = undefined as any;
+    this._wrappedTrafficKeyIV = undefined as any;
   }
 
   public _alertProcess(alert: payload.Alert): Promise<void> {
