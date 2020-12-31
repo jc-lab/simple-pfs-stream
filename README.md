@@ -2,6 +2,8 @@
 
 JSON-based perfect forward secrecy stream
 
+E2EE (Endpoint to Endpoint Encryption)
+
 # Handshake Process
 
 ## Functions
