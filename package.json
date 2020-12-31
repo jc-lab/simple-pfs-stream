@@ -1,6 +1,6 @@
 {
   "name": "simple-pfs-stream",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "JSON-based perfect forward secrecy stream",
   "main": "lib/index.js",
   "typings": "lib/index.d.ts",
